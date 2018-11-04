@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <jhi-page-ribbon></jhi-page-ribbon>
+
+    <div>
+        <router-outlet name="navbar"></router-outlet>
+    </div>
+
+    <div class="row justify-content-center page-body">
+        <div class="col-11">
+            <!--div class="container-fluid"-->
+                <div class="card jh-card">
+                    <router-outlet></router-outlet>
+                    <router-outlet name="popup"></router-outlet>
+                </div>
+            <!--/div-->
+        </div>
+
+    </div>
+    <jhi-footer></jhi-footer>
+
+</div>

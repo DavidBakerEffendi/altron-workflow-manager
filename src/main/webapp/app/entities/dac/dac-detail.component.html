@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dAC">
+            <h2><span>DAC</span> {{dAC.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Due Date</span></dt>
+                <dd>
+                    <span>{{dAC.dueDate}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{dAC.description}}</span>
+                </dd>
+                <dt><span>Dac Amount</span></dt>
+                <dd>
+                    <span>{{dAC.dacAmount}}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{dAC.status}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <div *ngIf="dAC.email">
+                        <a [routerLink]="['/email', dAC.email?.id, 'view']">{{dAC.email?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dac', dAC.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+{
+    "name": "Project",
+    "fields": [
+        {
+            "fieldName": "isprNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isprAmount",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isprDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "contact",
+            "otherEntityName": "contact",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "milestone",
+            "otherEntityName": "milestone",
+            "otherEntityRelationshipName": "isprNumber"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "cc",
+            "otherEntityName": "company",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181013101125",
+    "entityTableName": "project",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

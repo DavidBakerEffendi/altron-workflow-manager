@@ -1,0 +1,29 @@
+{
+    "name": "PO",
+    "fields": [
+        {
+            "fieldName": "poAmount",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "milestone",
+            "otherEntityName": "milestone",
+            "otherEntityRelationshipName": "poNumber"
+        }
+    ],
+    "changelogDate": "20181013101128",
+    "entityTableName": "po",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

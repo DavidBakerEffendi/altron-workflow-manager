@@ -1,0 +1,23 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <mat-panel-title class="col-md-4">
+            <p style = "margin-bottom: 0rem;" routerLink="/company/{{ companyUrl }}/project/{{ project.isprNumber }}">{{ project.isprNumber }}</p>
+        </mat-panel-title>
+        <mat-panel-description class="col-md-8">
+            {{ (project.isprDescription.length>40)? (project.isprDescription | slice:0:40)+'...':(project.isprDescription) }}
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+<div *ngIf="milestones">
+    <div class="panel row" *ngFor="let milestone of milestones" style="padding-bottom: 5pt" >
+      <mat-panel-title class="col-md-4">
+                <p style = "margin-bottom: 0rem; cursor: pointer;" routerLink="/company/{{ companyUrl }}/project/{{ project.isprNumber }}/milestone/{{ milestone.id }}">Milestone #{{ milestone.id }}</p>
+            </mat-panel-title>
+            <mat-panel-description class="col-md-4">
+                {{ milestone.name }}
+            </mat-panel-description>
+            <mat-panel-description class="col-md-3">
+                {{ milestone.status }}
+            </mat-panel-description>
+    </div>
+</div>
+</mat-expansion-panel>

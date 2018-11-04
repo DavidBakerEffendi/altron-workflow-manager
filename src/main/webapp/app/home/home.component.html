@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-8 panel color-home-1" style="padding-left: 20px; margin: 0px;">
+            <h1>Welcome, Team Altron!</h1>
+        </div>
+        <div class="col-12 col-lg-3 panel color-home-2" style="margin: 0px;"></div>
+        <div class="col-12 col-lg-1 panel color-home-3" style="margin: 0px;"></div>
+    </div>
+    <div [ngSwitch]="isAuthenticated()">
+        <div class="alert alert-link row" *ngSwitchCase="true">
+            <div class="col-12 col-md-6 col-xl-3 panel color-home-1" *ngIf="statistics">
+                    <div class="row">
+                        <div class="col-auto">
+                          <div style="padding-right: 50px">
+                            <mat-icon style="font-size: 100px">business</mat-icon>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-8 col-xl-7">
+                            <h4>Total Companies<h4>
+                            <h1>{{ statistics.companyCount }}</h1>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3 panel color-home-2" *ngIf="statistics">
+                <div class="row">
+                    <div class="col-auto">
+                      <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">view_headline</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-8 col-xl-7">
+                        <h4>Total DACs<h4>
+                        <h1>{{ statistics.dacCount }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3 panel color-home-3" *ngIf="statistics">
+                <div class="row">
+                    <div class="col-auto">
+                      <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">data_usage</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-8 col-xl-7">
+                        <h4>Total Purchase Orders<h4>
+                        <h3>{{ statistics.poCount }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3 panel color-home-4" *ngIf="statistics">
+                    <div class="row">
+                        <div class="col-auto">
+                          <div style="padding-right: 50px">
+                            <mat-icon style="font-size: 100px;">adjust</mat-icon>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-8 col-xl-7">
+                            <h4>Total Revenue<h4>
+                            <h3>{{ statistics.totalRevenue | convertFromCentsToRands }}</h3>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel" style="padding: 2em 2em 1em 2em;">
+
+        <div [ngSwitch]="isAuthenticated()">
+            <div class="alert alert-success col-12 animated fadeOut" *ngIf="hideLoginAlert && isAuthenticated()">
+                    <span *ngIf="account"> You are logged in as user "{{account.login}}". </span>
+            </div>
+
+            <div *ngSwitchCase="true">
+                <div class="row" style="margin-right: 0px;margin-left: 0px;">
+                    <jhi-company-block class="col-12 col-md-6 col-lg-4 col-xl-3" [companyName]="company.name" [projectCount]="company.projectCount"
+                        [milestoneCount]="company.milestoneCount" [totalRevenue]="company.projectRevenue" *ngFor="let company of companies"></jhi-company-block>
+                    <jhi-company-block class="col-12 col-md-6 col-lg-4 col-xl-3"></jhi-company-block>
+                </div>
+            </div>
+
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span>In order to get started, please <a class="alert-link" (click)="login()">sign in</a>
+                    above. </span>
+            </div>
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span>You don't have an account yet?</span>&nbsp;
+                <a class="alert-link" routerLink="register">Register a new account</a>
+            </div>
+        </div>
+
+    </div>
+</div>

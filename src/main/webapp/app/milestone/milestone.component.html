@@ -1,0 +1,151 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-8 panel bs-no-padding color-milestone-1" style="padding-left: 20px; margin-bottom: 0px;">
+            <h1 *ngIf="milestone">Milestone {{ milestone.id }}</h1>
+        </div>
+        <div class="col-lg-3 panel bs-no-padding color-milestone-2" style="margin-bottom: 0px;"></div>
+        <div class="col-lg-1 panel bs-no-padding color-milestone-3" style="margin-bottom: 0px;"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 bs-no-padding">
+            <div class="panel-small hover panel-c-5" routerLink="/company/{{companyName}}">
+                {{ companyName | convertFromURLToTitle }}
+            </div>
+        </div>
+        <div class="col-lg-3 bs-no-padding">
+            <div class="panel-small hover panel-c-6" routerLink="/company/{{companyName}}/project/{{projectName}}">
+                {{ projectName | convertFromURLToTitle }}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-xl-3 panel color-info-1 hover">
+                <div class="row">
+                    <div class="col-auto">
+                      <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">event</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-8 col-xl-7">
+                        <h4>Due in:</h4>
+                        <h3 *ngIf="daysLeft">{{ daysLeft }}</h3>
+                        days
+                    </div>
+                </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 panel color-info-2 hover">
+                <div class="row">
+                    <div class="col-auto">
+                      <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">autorenew</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-8 col-xl-7">
+                        <h4>Status:</h4>
+                        <h3 *ngIf="statistics">{{statistics.status}}</h3>
+                        <!-- TODO: 5 days since changed -->
+                    </div>
+                </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 col-md-3 panel color-info-3 hover">
+                <div class="row">
+                    <div class="col-auto">
+                      <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">event_seat</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-8 col-xl-7">
+                        <h4>Manager:</h4>
+                        <span *ngIf="statistics">
+                            <h6>{{ statistics.managerName }}</h6>
+                            {{ statistics.managerEmail }}
+                        </span>
+                    </div>
+                </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3 panel color-info-4 hover">
+                <div class="row">
+                    <div class="col-auto">
+                      <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">person</mat-icon>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-8 col-xl-7">
+                        <h4>Contact:</h4>
+                        <span *ngIf="statistics">
+                            <h6>{{ statistics.contactName}}</h6>
+                            {{ statistics.contactEmail}}
+                        </span>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+    <div class="panel row" *ngIf="statistics">
+        <h3 class="col-12"> Milestone Data </h3>
+        <div class="col-12"><hr></div>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <mat-label>ISPR #</mat-label>
+            <input matInput placeholder="1234567890" value="{{ statistics.isprNumber }}" [disabled]="true">
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <mat-label>Previous Revenue</mat-label>
+            <input matInput placeholder="1234567890" value="{{ statistics.previousRevenue }}" [disabled]="true">
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <mat-label>Pre-receipted income</mat-label>
+            <input matInput placeholder="1234567890" value="{{ statistics.prereceiptedIncome }}" [disabled]="true">
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <mat-label>Revenue hold back</mat-label>
+            <input matInput placeholder="1234567890" value="{{ statistics.revenueHoldBack }}" [disabled]="true">
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <mat-label>Revenue in Next Financial Year</mat-label>
+            <input matInput placeholder="1234567890" value="{{ statistics.revenueInNextFinYear }}" [disabled]="true">
+        </mat-form-field>
+
+        <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <mat-label>Due Date</mat-label>
+            <input matInput placeholder="1234567890" value="{{ statistics.dueDate }}" [disabled]="isDisabled">
+        </mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-3">
+
+        <mat-form-field class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <mat-label>Status</mat-label>
+            <input matInput placeholder="1234567890" value="{{ statistics.status }}" [disabled]="isDisabled">
+        </mat-form-field>
+
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-4 col-xl-3 offset-xl-0" *ngIf="milestone">
+                <button class="float-right" mat-raised-button style="margin-bottom: 10px" routerLink="/milestone/{{milestone.id}}/edit">Edit</button>
+        </div>
+
+        <mat-accordion class="col-12" *ngIf="milestone">
+            <jhi-dac-email *ngFor="let dac of this.milestone.dacs" [dac]="dac" [manager]="statistics.managerEmail"></jhi-dac-email>
+        </mat-accordion>
+
+        <div class="col-12"><div style="min-height: 15px;"> </div> </div>
+
+        <div *ngIf="milestone.poNumber == undefined" class="col-12">
+                <button class="float-right" style="margin-left: 10px; margin-bottom: 10px;" mat-raised-button routerLink="/milestone/{{ milestone.id }}/po/new">Add PO</button>
+                <button class="float-right" style="margin-left: 10px; margin-bottom: 10px;" mat-raised-button routerLink="/milestone/{{ milestone.id }}/dac/new">Add new dac</button>
+        </div>
+        <div *ngIf="milestone.poNumber" class="col-12">
+                <button class="float-right" style="margin-left: 10px; margin-bottom: 10px;" mat-raised-button routerLink="/po/{{milestone.poNumber.id}}/edit">Edit PO</button>
+                <button class="float-right" style="margin-left: 10px; margin-bottom: 10px;" mat-raised-button routerLink="/milestone/{{ milestone.id }}/dac/new">Add new dac</button>
+        </div>
+    </div>
+
+</div>
+
+<router-outlet (change)="refresh()"></router-outlet>

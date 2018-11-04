@@ -1,0 +1,15 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({ name: 'convertFromTitleToURL' })
+export class JhiURLCasePipe implements PipeTransform {
+    transform(str: String) {
+        const splitStr = str.toLowerCase().split(' ');
+        for (let i = 0; i < splitStr.length; i++) {
+            // You do not need to check if i is larger than splitStr length, as your for does that for you
+            // Assign it back to the array
+            splitStr[i] = splitStr[i].substring(0).toLowerCase();
+        }
+        // Directly return the joined string
+        return splitStr.join('-');
+    }
+}

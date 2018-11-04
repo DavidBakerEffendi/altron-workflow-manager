@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-lg-8 panel panel-c-5" style="margin-bottom: 0px;">
+              <h1> Create or edit a PO</h1>
+            </div>
+            <div class="col-lg-3 panel panel-c-6" style="margin-bottom: 0px;"></div>
+            <div class="col-lg-1 panel panel-c-7" style="margin-bottom: 0px;"></div>
+    </div>
+    
+    <div class = "panel" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-1"></div>  
+            <div class="col-10">
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+                        <div class="form-group" [hidden]="!pO.id">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id"
+                                [(ngModel)]="pO.id" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_poAmount">Po Amount</label>
+                            <input type="number" class="form-control" name="poAmount" id="field_poAmount"
+                                [(ngModel)]="pO.poAmount" required/>
+                            <div [hidden]="!(editForm.controls.poAmount?.dirty && editForm.controls.poAmount?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.poAmount?.errors?.required">
+                                This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                    [hidden]="!editForm.controls.poAmount?.errors?.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class ="float-right">
+                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+<mat-expansion-panel [expanded]="false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Dac #{{ dac.id }}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <hr style = "margin-top: -0.5rem">
+    <div class="row">
+    <mat-form-field class="col-12">
+        <textarea rows='5' matInput placeholder="Description" value="{{ dac.description }}" [disabled]="true"></textarea>
+    </mat-form-field>
+    <mat-form-field class="col-12 col-lg-4">
+        <input matInput [matDatepicker]="picker" placeholder="Due Date" value="{{ dac.dueDate }}" [disabled]="true">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-lg-4">
+        <mat-label>Dac amount</mat-label>
+        <input matInput placeholder="DAC Amount" value="{{ dac.dacAmount }}" [disabled]="true">
+    </mat-form-field>
+
+    <mat-form-field class="col-12 col-lg-4">
+        <mat-label>Dac status</mat-label>
+        <input matInput placeholder="DAC status" value="{{ dac.status }}" [disabled]="true">
+    </mat-form-field>
+    <div class="col-12" style="padding-top: 10px;">
+        <button class="float-right" mat-raised-button routerLink="/dac/{{ dac.id }}/edit">Edit DAC</button>
+    </div>
+  </div>
+    <br>
+    <div class = "panel">
+        <div>Email</div>
+        <hr>
+
+        <div *ngIf="dac.email == undefined" class="row">
+            <span class="col-12"> No email added </span>
+            <div class="col-12">
+                <button class="float-right" mat-raised-button routerLink="/dac/{{ dac.id }}/email/new">Add email</button>
+            </div>
+            <div class="col-12" style="min-height: 20px;"> </div>
+        </div>
+
+        <div *ngIf="dac.email">
+            <div class = "row">
+                    <mat-form-field class="col-12 col-md-6" style="margin-bottom: 16px">
+                        <mat-label>Address</mat-label>
+                        <input matInput placeholder="" value="{{ dac.email.address }}" [disabled]="true">
+                    </mat-form-field>
+                    <mat-form-field class="col-12 col-md-6">
+                        <mat-label>Subject</mat-label>
+                        <input matInput placeholder="1234567890" value="{{ dac.email.subject }}" [disabled]="true">
+                    </mat-form-field>
+                <div class= "col-12">
+                <mat-form-field style="width: 100%;">
+                    <textarea rows='5' matInput placeholder="Body" value="{{ dac.email.body }}" [disabled]="true"></textarea>
+                </mat-form-field>
+                </div>
+            </div>
+
+            <div style="padding-left:10px" *ngIf="dac.email.attachments">
+                <mat-chip-list>
+                    Attachments:
+                    <div style="padding-left: 10px" *ngFor="let att of dac.email.attachments">
+                        <mat-chip color="primary" selected (click)="openFile(att.attachmentContentType, att.attachment)">{{att.name}}</mat-chip>
+                    </div>
+                </mat-chip-list>
+
+            </div>
+            <hr style = "margin-top: 0.5rem;">
+
+            <div *ngIf="dac.status === 'CREATED'">
+                    <div class= "row">
+                      <div class="col-12">
+                        <button class="float-right" mat-raised-button style= "margin-left: 10px; margin-bottom: 10px;" routerLink="/email/{{ dac.email.id }}/edit">Edit email</button>
+                        <button class="float-right" mat-raised-button style= "margin-left: 10px; margin-bottom: 10px;" routerLink="/email/{{ dac.email.id }}/attachments/new">Add attachments</button>
+                        <button class="float-right" mat-raised-button style= "margin-left: 15px; margin-bottom: 10px;" (click)="sendEmail(manager, sentStatus)">Send email</button>
+                      </div>
+                    </div>
+            </div>
+
+            <div *ngIf="dac.status === 'SENT'">
+                    <div class= "row">
+                      <div class="col-12">
+                        <button class="float-right" mat-raised-button style= "margin-left: 10px; margin-bottom: 10px;" routerLink="/email/{{ dac.email.id }}/edit">Edit email</button>
+                        <button class="float-right" mat-raised-button style= "margin-left: 10px; margin-bottom: 10px;" routerLink="/email/{{ dac.email.id }}/attachments/new">Add attachments</button>
+                        <button class="float-right" mat-raised-button style= "margin-left: 10px; margin-bottom: 10px;" (click)="sendEmail('fail', declinedStatus)">Decline</button>
+                        <button class="float-right" mat-raised-button style= "margin-left: 15px; margin-bottom: 10px;" (click)="sendEmail(dac.email.address, invoicedStatus)">Approve</button>
+                      </div>
+                    </div>
+            </div>
+
+            <div *ngIf="dac.status === 'INVOICED'">
+            </div>
+
+            <div *ngIf="dac.status === 'DECLINED'">
+                    <div class= "row" #id>
+                      <div class="col-12">
+                        <button class="float-right" mat-raised-button style= "margin-left: 15px; margin-bottom: 10px;" (click)="sendEmail(dac.email.address, invoicedStatus)">Approve</button>
+                      </div>
+                    </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</mat-expansion-panel>

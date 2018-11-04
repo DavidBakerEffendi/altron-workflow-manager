@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-lg-8 panel bs-no-padding panel-c-6" style="padding-left: 20px">
+            <h1>Create or edit a Contact</h1>
+        </div>
+        <div class="col-lg-3 panel bs-no-padding panel-c-7"></div>
+        <div class="col-lg-1 panel bs-no-padding panel-c-8"></div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col-1"></div>
+
+            <div class="col-10">
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+                        <div class="form-group" [hidden]="!contact.id">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id"
+                                [(ngModel)]="contact.id" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_firstName">First Name</label>
+                            <input type="text" class="form-control" name="firstName" id="field_firstName"
+                                [(ngModel)]="contact.firstName" required/>
+                            <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.firstName?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_lastName">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" id="field_lastName"
+                                [(ngModel)]="contact.lastName" required/>
+                            <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.lastName?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_workNumber">Work Number</label>
+                            <input type="text" class="form-control" placeholder="(+27)(_ _) (_ _ _) (_ _ _ _)" name="workNumber" id="field_workNumber"
+                                [(ngModel)]="contact.workNumber" minlength="12" maxlength="12"/>
+                            <div [hidden]="!(editForm.controls.workNumber?.dirty && editForm.controls.workNumber?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.workNumber?.errors?.minlength">
+                                This field is required to be at least 12 characters.
+                                </small>
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.workNumber?.errors?.maxlength">
+                                This field cannot be longer than 12 characters.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_cellNumber">Cell Number</label>
+                            <input type="text" class="form-control" placeholder="(+27)(_ _) (_ _ _) (_ _ _ _)" name="cellNumber" id="field_cellNumber"
+                                [(ngModel)]="contact.cellNumber" minlength="12" maxlength="12"/>
+                            <div [hidden]="!(editForm.controls.cellNumber?.dirty && editForm.controls.cellNumber?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.cellNumber?.errors?.minlength">
+                                This field is required to be at least 12 characters.
+                                </small>
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.cellNumber?.errors?.maxlength">
+                                This field cannot be longer than 12 characters.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_email">Email</label>
+                            <input type="text" class="form-control" name="email" id="field_email"
+                                [(ngModel)]="contact.email" required/>
+                            <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.email?.errors?.required">
+                                This field is required..
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class ="float-right">
+                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>

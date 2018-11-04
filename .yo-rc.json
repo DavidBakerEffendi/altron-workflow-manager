@@ -1,0 +1,32 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.altron.workflowmanager"
+    },
+    "jhipsterVersion": "5.4.2",
+    "applicationType": "monolith",
+    "baseName": "WorkflowManager",
+    "packageName": "com.altron.workflowmanager",
+    "packageFolder": "com/altron/workflowmanager",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZmM1YjZjMzFiNWYxMWVmZmNjNzk3ZjZhODU2OTZiOTBkOTQ5MWMyODZiMzhkMzMxNTYwNzA5ODVmMjJiNmY4ZWQ0MTdjMzcxZDk0NTU4N2RlMjg4MGMyOTI2OWNjNjU3NDI3M2U2YWNmZjU1ZmFlMzUzNGQxYTNkY2UyNjU5Njc=",
+    "clientFramework": "angularX",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false
+  }
+}

@@ -1,0 +1,264 @@
+@import '~material-design-icons/iconfont/material-icons.css';
+
+.centerp {
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 15%;
+}
+
+.basic {
+    font-family: 'Montserrat';
+}
+
+.company-container {
+    width: 100%;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.bs-no-padding {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.round_corners {
+    border-radius: 25px;
+}
+.panel {
+    margin-bottom: 20px;
+    margin-top: 0px;
+    padding: 1em 1em;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.panel-small {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center !important;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 0.1em 0.1em;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.hover:hover {
+    cursor: pointer;
+    background: #8b5c7e !important;
+    transition: 0.5s all !important;
+    -webkit-transition: 0.5s all !important;
+    -moz-transition: 0.5s all !important;
+    -o-transition: 0.5s all !important;
+}
+
+.hoverFont:hover {
+    cursor: pointer;
+    color: black !important;
+    transition: 0.5s all !important;
+    -webkit-transition: 0.5s all !important;
+    -moz-transition: 0.5s all !important;
+    -o-transition: 0.5s all !important;
+}
+
+.animated {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.9;
+    }
+    80% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.9;
+    }
+    80% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
+
+.color-home-1 {
+    color: white;
+    background-color: #658396;
+}
+.color-home-2 {
+    color: white;
+    background-color: #96b4c5;
+}
+.color-home-3 {
+    color: white;
+    background-color: #9cc7df;
+}
+.color-home-4 {
+    color: whitesmoke;
+    background-color: #9fd2f0;
+}
+
+.color-info-1 {
+    color: white;
+    background-color: #8dc2bc;
+}
+.color-info-2 {
+    color: white;
+    background-color: #edd6b4;
+}
+.color-info-3 {
+    color: white;
+    background-color: #be7467;
+}
+.color-info-4 {
+    color: white;
+    background-color: #e2ae63;
+}
+.panel-c-1 {
+    color: white;
+    background-color: #8dc2bc;
+}
+.panel-c-2 {
+    color: white;
+    background-color: #edd6b4;
+}
+.panel-c-3 {
+    color: white;
+    background-color: #be7467;
+}
+.panel-c-4 {
+    color: white;
+    background-color: #e2ae63;
+}
+.panel-c-5 {
+    color: white;
+    background-color: #539770;
+}
+.panel-c-6 {
+    color: white;
+    background-color: #4b7d74;
+}
+.panel-c-7 {
+    color: white;
+    background-color: #3d5257;
+}
+.panel-c-8 {
+    color: white;
+    background-color: #b0ada8;
+}
+.panel-c-9 {
+    color: white;
+    background-color: #4e4e56;
+}
+.panel-c-10 {
+    color: white;
+    background-color: #da635d;
+}
+.panel-c-11 {
+    color: white;
+    background-color: #dcd0c0;
+}
+.color-company-1 {
+    color: white;
+    background-color: #588c75;
+}
+.color-company-2 {
+    color: white;
+    background-color: #b0c47f;
+}
+.color-company-3 {
+    color: white;
+    background-color: #f3e395;
+}
+.color-dac-3 {
+    color: white;
+    background-color: #f3e395;
+}
+.color-dac-2 {
+    color: white;
+    background-color: #f3ae73;
+}
+.color-dac-1 {
+    color: white;
+    background-color: #da645a;
+}
+.color-milestone-1 {
+    color: white;
+    background-color: #a6a5b5;
+}
+.color-milestone-2 {
+    color: white;
+    background-color: #887a88;
+}
+.color-milestone-3 {
+    color: white;
+    background-color: #b5a6ab;
+}
+.margin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.smallMarginTop {
+    margin-top: 10px;
+}
+.color-project-1 {
+    color: white;
+    background-color: #4e4e56;
+}
+.color-project-2 {
+    color: white;
+    background-color: #da635d;
+}
+.color-project-3 {
+    color: white;
+    background-color: #dcd0c0;
+}
+.color-project-4 {
+    color: white;
+    background-color: #b0ada8;
+}

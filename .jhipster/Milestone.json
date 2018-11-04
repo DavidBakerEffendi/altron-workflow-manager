@@ -1,0 +1,80 @@
+{
+    "name": "Milestone",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dueDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "previousRevenue",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prereceiptedIncome",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "revenueHoldBack",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "revenueInNextFinYear",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "MilestoneStatus",
+            "fieldValues": "ACTIVE,WIP,READY,COMPLETE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "poNumber",
+            "otherEntityName": "pO",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "milestone",
+            "relationshipName": "dac",
+            "otherEntityName": "dAC",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "isprNumber",
+            "otherEntityName": "project",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181013101126",
+    "entityTableName": "milestone",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

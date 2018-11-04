@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="milestone">
+            <h2><span>Milestone</span> {{milestone.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{milestone.name}}</span>
+                </dd>
+                <dt><span>Due Date</span></dt>
+                <dd>
+                    <span>{{milestone.dueDate}}</span>
+                </dd>
+                <dt><span>Previous Revenue</span></dt>
+                <dd>
+                    <span>{{milestone.previousRevenue}}</span>
+                </dd>
+                <dt><span>Prereceipted Income</span></dt>
+                <dd>
+                    <span>{{milestone.prereceiptedIncome}}</span>
+                </dd>
+                <dt><span>Revenue Hold Back</span></dt>
+                <dd>
+                    <span>{{milestone.revenueHoldBack}}</span>
+                </dd>
+                <dt><span>Revenue In Next Fin Year</span></dt>
+                <dd>
+                    <span>{{milestone.revenueInNextFinYear}}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{milestone.status}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{milestone.user?.login}}
+                </dd>
+                <dt><span>Po Number</span></dt>
+                <dd>
+                    <div *ngIf="milestone.poNumber">
+                        <a [routerLink]="['/po', milestone.poNumber?.id, 'view']">{{milestone.poNumber?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Dac</span></dt>
+                <dd>
+                    <span *ngFor="let dac of milestone.dacs; let last = last">
+                        <a [routerLink]="['/dac', dac?.id, 'view' ]">{{dac.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Ispr Number</span></dt>
+                <dd>
+                    <div *ngIf="milestone.isprNumber">
+                        <a [routerLink]="['/project', milestone.isprNumber?.id, 'view']">{{milestone.isprNumber?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/milestone', milestone.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

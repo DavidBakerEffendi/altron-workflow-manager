@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="project">
+            <h2><span>Project</span> {{project.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Ispr Number</span></dt>
+                <dd>
+                    <span>{{project.isprNumber}}</span>
+                </dd>
+                <dt><span>Ispr Amount</span></dt>
+                <dd>
+                    <span>{{project.isprAmount}}</span>
+                </dd>
+                <dt><span>Ispr Description</span></dt>
+                <dd>
+                    <span>{{project.isprDescription}}</span>
+                </dd>
+                <dt><span>Start Date</span></dt>
+                <dd>
+                    <span>{{project.startDate}}</span>
+                </dd>
+                <dt><span>Contact</span></dt>
+                <dd>
+                    <div *ngIf="project.contact">
+                        <a [routerLink]="['/contact', project.contact?.id, 'view']">{{project.contact?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Cc</span></dt>
+                <dd>
+                    <div *ngIf="project.cc">
+                        <a [routerLink]="['/company', project.cc?.id, 'view']">{{project.cc?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/project', project.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

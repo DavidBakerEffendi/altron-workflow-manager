@@ -1,0 +1,172 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 panel bs-no-padding color-project-1" style="padding-left: 20px; margin-bottom: 0px;">
+            <h1 *ngIf="project">{{ project.isprNumber }}</h1>
+        </div>
+        <div class="col-lg-3 panel bs-no-padding color-project-2" style="padding-left: 20px; margin-bottom: 0px;">
+            <h4>Created: <h5 *ngIf="project">{{ displayDate() }}</h5>
+            </h4>
+        </div>
+        <div class="col-lg-1 panel bs-no-padding color-project-3" style="margin-bottom: 0px;"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 bs-no-padding">
+            <div class="panel-small hover panel-c-5" routerLink="/company/{{companyName}}">
+                {{ companyName }}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-12 col-lg-6 col-xl-3 panel color-info-4 hover">
+            <div class="row">
+                <div class="col-auto">
+                    <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">view_headline</mat-icon>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 col-xl-7">
+                    <h4>Total DACs<h4>
+                            <h1 *ngIf="totalDacs !== undefined">{{ totalDacs }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 panel color-info-3 hover">
+            <div class="row">
+                <div class="col-auto">
+                    <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">data_usage</mat-icon>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 col-xl-7">
+                    <h4>Total Purchase Orders<h4>
+                            <h3 *ngIf="totalPo !== undefined">{{ totalPo }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 panel color-info-2 hover">
+            <div class="row">
+                <div class="col-auto">
+                    <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">adjust</mat-icon>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 col-xl-7">
+                    <h4>Expected Income<h4>
+                            <h3 *ngIf="project">{{ project.isprAmount | convertFromCentsToRands }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 panel panel-c-8 hover">
+            <div class="row">
+                <div class="col-auto">
+                    <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">adjust</mat-icon>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 col-xl-7">
+                    <h4>DACed Income<h4>
+                            <h3 *ngIf="invoicedIncome !== undefined">{{ invoicedIncome | convertFromCentsToRands }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 panel color-info-4 hover">
+            <div class="row">
+                <div class="col-auto">
+                    <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">person</mat-icon>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 col-xl-7">
+                    <h4>Contact:</h4>
+                    <span *ngIf="project">
+                        <h6>{{ project.contact.firstName }}</h6>
+                        {{ project.contact.email }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 col-4 panel hover color-info-3">
+            <div class="row">
+                <div class="col-auto">
+                    <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">person</mat-icon>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 col-xl-7">
+                    <h4>Milestone Contact:</h4>
+                    <span *ngIf="project.milestones && milestoneStatistics">
+                        <h6>{{ milestoneStatistics.contactName}}</h6>
+                        {{ milestoneStatistics.contactEmail}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 panel color-info-2 hover">
+            <div class="row">
+                <div class="col-auto">
+                    <div style="padding-right: 50px">
+                        <mat-icon style="font-size: 100px">autorenew</mat-icon>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8 col-xl-7">
+                    <h4>Status:</h4>
+                    <h5 *ngIf="project && !isCompleted()">Incomplete</h5>
+                    <h5 *ngIf="project && isCompleted()">Completed</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 panel hover panel-c-8">
+            <h4>Description:</h4>
+            <p *ngIf="project">{{ project.isprDescription }}</p>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="panel col-12" style="margin-bottom:10px">
+            <h3> Milestones </h3>
+            <hr>
+            <div *ngIf="project && project.milestones">
+                <mat-expansion-panel *ngFor="let milestone of project.milestones; index as i">
+                    <mat-expansion-panel-header style="padding-top: 15px;">
+                        <mat-panel-title class="col-12 col-lg-4">
+                            <p routerLink="/company/{{ companyName }}/project/{{ project.isprNumber }}/milestone/{{ milestone.id }}">Milestone:
+                                {{ milestone.name }}</p>
+                        </mat-panel-title>
+                        <mat-panel-description class="col-12 col-lg-2">
+                            <p> {{ milestone.status }} </p>
+                        </mat-panel-description>
+                        <div class="col-12 col-lg-6">
+                            <div class="col-11">
+                                <mat-panel-description class="progress">
+                                    <div class="progress-bar panel-c-5" role="progressbar" *ngIf="milestoneIsComplete(i)"
+                                        aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="width: 100%">
+                                    </div>
+                                    <div class="progress-bar panel-c-4" role="progressbar" *ngIf="!milestoneIsComplete(i) && !milestoneIsOverDue(i)"
+                                        aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': milestoneGetProgress(i) + '%', 'aria-valuenow': milestoneGetProgress(i)}">
+                                    </div>
+                                    <div class="progress-bar panel-c-10" role="progressbar" *ngIf="!milestoneIsComplete(i) && milestoneIsOverDue(i)"
+                                        aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="width: 100%;">
+                                    </div>
+                                </mat-panel-description>
+                            </div>
+                        </div>
+                    </mat-expansion-panel-header>
+                    <p class="col-12">Due date: {{ displayDatePrecise(milestone.dueDate) }}, {{
+                        milestoneDueDateStatus(i) }}</p>
+                </mat-expansion-panel>
+            </div>
+
+            <div class="float-right" style="padding-top: 10px">
+                <button mat-raised-button [routerLink]="['/milestone/new']"> Add Milestone </button>
+            </div>
+            <div style="min-height: 15px;"> </div>
+        </div>
+
+        <div class="col-12">
+            <button class="float-right" mat-raised-button *ngIf="project" [routerLink]="['/project/' + project.id + '/edit']">Edit
+                Project</button>
+        </div>
+    </div>
+</div>

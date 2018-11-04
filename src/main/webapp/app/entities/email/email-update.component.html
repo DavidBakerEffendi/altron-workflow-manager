@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-lg-8 panel bs-no-padding panel-c-7" style="padding-left: 20px">
+            <h1>Create or edit a Email</h1>
+        </div>
+        <div class="col-lg-3 panel bs-no-padding panel-c-8 "></div>
+        <div class="col-lg-1 panel bs-no-padding color-company-1 "></div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col-1"></div>
+
+            <div class="col-10">
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+                        <div class="form-group" [hidden]="!email.id">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id"
+                                [(ngModel)]="email.id" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_address">Address</label>
+                            <input type="text" class="form-control" name="address" id="field_address"
+                                [(ngModel)]="email.address" required/>
+                            <div [hidden]="!(editForm.controls.address?.dirty && editForm.controls.address?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.address?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_subject">Subject</label>
+                            <input type="text" class="form-control" name="subject" id="field_subject"
+                                [(ngModel)]="email.subject" required/>
+                            <div [hidden]="!(editForm.controls.subject?.dirty && editForm.controls.subject?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.subject?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_body">Body</label>
+                            <input type="text" class="form-control" name="body" id="field_body"
+                                [(ngModel)]="email.body" required/>
+                            <div [hidden]="!(editForm.controls.body?.dirty && editForm.controls.body?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.body?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class = "float-right">
+                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>

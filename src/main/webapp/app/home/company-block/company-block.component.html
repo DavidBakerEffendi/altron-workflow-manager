@@ -1,0 +1,22 @@
+<div class ="panel hover row"  routerLink = "/company/{{ companyURL }}" *ngIf="initialized" style="color:white" [style.background-color]="this.bgColor"  >
+    <div class="col-12">
+        <h3>{{ companyName }}</h3>
+        <h6>Projects: {{ projectCount }}</h6>
+        <h6>Milestones: {{ milestoneCount }}</h6>
+        <h6>Total Revenue: {{ totalRevenue | convertFromCentsToRands }}</h6>
+    </div>
+</div>
+
+<!-- This is to allow for adding a company -->
+<div class ="panel row" *ngIf="!initialized" style="color:black; background: lightgray;">
+        <div class="col-12 col-sm-6 hoverFont" style = "color:rgb(97, 97, 97)">
+            <div routerLink = "/company/new">
+                <h3 style="font-size: 6rem; text-align: center;">+</h3>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 hoverFont" style = "color:rgb(97, 97, 97)">
+            <div routerLink = "/contact/new">
+                <mat-icon style="font-size: 100px; text-align: center;">person_add</mat-icon>
+            </div>
+        </div>
+</div>

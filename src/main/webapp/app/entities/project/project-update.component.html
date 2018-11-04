@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-lg-8 panel color-company-1" style="margin-bottom: 0px;">
+              <h1> Create or edit project</h1>
+            </div>
+            <div class="col-lg-3 panel color-company-2" style="margin-bottom: 0px;"></div>
+            <div class="col-lg-1 panel color-company-3" style="margin-bottom: 0px;"></div>
+    </div>
+    
+    <div class = "panel" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-1"></div>    
+            <div class="col-10">
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+                        <div class="form-group" [hidden]="!project.id">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id"
+                                [(ngModel)]="project.id" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_isprNumber">Ispr Number</label>
+                            <input type="text" class="form-control" name="isprNumber" id="field_isprNumber"
+                                [(ngModel)]="project.isprNumber" required/>
+                            <div [hidden]="!(editForm.controls.isprNumber?.dirty && editForm.controls.isprNumber?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.isprNumber?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_isprAmount">Ispr Amount</label>
+                            <input type="number" class="form-control" name="isprAmount" id="field_isprAmount"
+                                [(ngModel)]="project.isprAmount" required/>
+                            <div [hidden]="!(editForm.controls.isprAmount?.dirty && editForm.controls.isprAmount?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.isprAmount?.errors?.required">
+                                This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                    [hidden]="!editForm.controls.isprAmount?.errors?.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_isprDescription">Ispr Description</label>
+                            <input type="text" class="form-control" name="isprDescription" id="field_isprDescription"
+                                [(ngModel)]="project.isprDescription" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_startDate">Start Date</label>
+                            <div class="d-flex">
+                                <input id="field_startDate" type="datetime-local" class="form-control" name="startDate" [(ngModel)]="startDate"
+                                required/>
+                            </div>
+                            <div [hidden]="!(editForm.controls.startDate?.dirty && editForm.controls.startDate?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.startDate?.errors?.required">
+                                This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                    [hidden]="!editForm.controls.startDate?.errors?.ZonedDateTimelocal">
+                                    This field should be a date and time.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_contact">Contact</label>
+                            <select class="form-control" id="field_contact" name="contact" [(ngModel)]="project.contact" >
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="contactOption.id === project.contact?.id ? project.contact : contactOption" *ngFor="let contactOption of contacts; trackBy: trackContactById">{{contactOption.firstName}} {{contactOption.lastName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_cc">Cc</label>
+                            <select class="form-control" id="field_cc" name="cc" [(ngModel)]="project.cc" >
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="companyOption.id === project.cc?.id ? project.cc : companyOption" *ngFor="let companyOption of companies; trackBy: trackCompanyById">{{companyOption.companyName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class ="float-right">
+                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>
+

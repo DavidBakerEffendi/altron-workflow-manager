@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span>Projects</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-project" [routerLink]="['/project/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Project
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="projects">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="isprNumber"><span>Ispr Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="isprAmount"><span>Ispr Amount</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="isprDescription"><span>Ispr Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="startDate"><span>Start Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contact.id"><span>Contact</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cc.id"><span>Cc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let project of projects ;trackBy: trackId">
+                <td><a [routerLink]="['/project', project.id, 'view' ]">{{project.id}}</a></td>
+                <td>{{project.isprNumber}}</td>
+                <td>{{project.isprAmount}}</td>
+                <td>{{project.isprDescription}}</td>
+                <td>{{project.startDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="project.contact">
+                        <a [routerLink]="['../contact', project.contact?.id, 'view' ]" >{{project.contact?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="project.cc">
+                        <a [routerLink]="['../company', project.cc?.id, 'view' ]" >{{project.cc?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/project', project.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/project', project.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

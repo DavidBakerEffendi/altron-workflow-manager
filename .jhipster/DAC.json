@@ -1,0 +1,57 @@
+{
+    "name": "DAC",
+    "fields": [
+        {
+            "fieldName": "dueDate",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dacAmount",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "DacStatus",
+            "fieldValues": "CREATED,SENT,APPROVED,DECLINED,INVOICED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "email",
+            "otherEntityName": "email",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "dAC"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "milestone",
+            "otherEntityName": "milestone",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "dac"
+        }
+    ],
+    "changelogDate": "20181013101127",
+    "entityTableName": "dac",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

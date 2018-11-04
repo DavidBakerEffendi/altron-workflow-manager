@@ -1,0 +1,96 @@
+<!-- Latest compiled and minified CSS -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8 panel color-company-1" style="margin-bottom: 0px;">
+      <h1 *ngIf="company"> {{ company.companyName | convertFromURLToTitle }}</h1>
+    </div>
+    <div class="col-lg-3 panel color-company-2" style="margin-bottom: 0px;"></div>
+    <div class="col-lg-1 panel color-company-3" style="margin-bottom: 0px;"></div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <!-- Contacts-->
+    <div class="col-md-6 col-xl-3 panel color-info-1 hover">
+      <div class="row">
+        <div class="col-auto">
+          <div style="padding-right: 50px">
+            <mat-icon style="font-size: 100px">person</mat-icon>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8 col-xl-7" *ngIf="company">
+          <h4>{{ company.companyName | convertFromURLToTitle }}</h4>
+          <span>{{ company.headName }}</span><br>
+          <span>{{ company.headNumber }}</span>
+          <span>{{ company.headEmail }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Revenue -->
+    <div class="col-md-6 col-xl-3 panel color-info-2 hover">
+      <div class="row">
+        <div class="col-auto">
+          <div style="padding-right: 50px">
+            <mat-icon style="font-size: 100px">attach_money</mat-icon>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8 col-xl-7">
+          <h4>Total Revenue: </h4>
+          <h4 *ngIf="statistics" style="margin-bottom: 0.0rem;">{{ statistics.totalRevenue | convertFromCentsToRands }}</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total DACS -->
+    <div class="col-md-6 col-xl-3 panel color-info-3 hover">
+      <div class="row">
+        <div class="col-auto">
+          <div style="padding-right: 50px">
+            <mat-icon style="font-size: 100px">view_headline</mat-icon>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8 col-xl-7">
+          <h4>Total DACS: </h4>
+          <h1 *ngIf="statistics" style="margin-bottom: 0.0rem;"> {{ statistics.dacCount }}</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Purchase Orders -->
+    <div class="col-md-6 col-xl-3 panel color-info-4 hover">
+      <div class="row">
+        <div class="col-auto">
+          <div style="padding-right: 50px">
+            <mat-icon style="font-size: 100px">data_usage</mat-icon>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8 col-xl-7">
+          <h4>Purchase Orders: </h4>
+          <h1 style="margin-bottom: 0.0rem;" *ngIf="statistics"> {{ statistics.pocount }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--PROJECTS-->
+  <div class="row">
+    <div class="col-12 panel" style="margin-bottom:10px">
+      <h3> Projects </h3>
+      <hr>
+      <mat-accordion>
+        <div *ngIf="projects">
+          <jhi-project-milestone *ngFor="let project of projects" [project]="project" [companyUrl]="company.companyName"></jhi-project-milestone>
+        </div>
+        <div class="float-right" style="padding-top: 10px">
+          <button mat-raised-button [routerLink]="['/project/new']">New project</button>
+        </div>
+      </mat-accordion>
+    </div>
+
+    <div class="col-12">
+      <button class="float-right" *ngIf="company" mat-raised-button [routerLink]="['/company/' + company.id + '/edit']">Edit
+        company</button>
+    </div>
+  </div>

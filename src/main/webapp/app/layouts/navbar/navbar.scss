@@ -1,0 +1,88 @@
+/* ==========================================================================
+Navbar
+========================================================================== */
+
+.navbar-version {
+    font-size: 10px;
+    color: rgb(102, 144, 180);
+}
+
+.jh-navbar {
+    font-family: 'Montserrat';
+    color: #435F78;
+    background-color: #ffffff;
+    border-bottom: 2px solid #435F78;
+    padding: 0.2em 1em;
+    .profile-image {
+        margin: -10px 0px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
+    .dropdown-item.active,
+    .dropdown-item.active:focus,
+    .dropdown-item.active:hover {
+        background-color: #353d47;
+    }
+    .dropdown-toggle::after {
+        margin-left: 0.15em;
+    }
+    ul.navbar-nav {
+        padding: 0.5em;
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+    }
+    a.nav-link {
+        font-weight: 400;
+    }
+    .jh-navbar-toggler {
+        color: #435F78;
+        //@extendolor: #ccc;
+        font-size: 1.5em;
+        padding: 10px;
+        &:hover {
+            //color: #fff;
+            color: #435F78;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .jh-navbar-toggler {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .jh-logo-container {
+        width: 100%;
+    }
+}
+
+.navbar-title {
+    display: inline-block;
+    vertical-align: middle;
+    color: #435F78;
+}
+
+a {
+    color: #435F78 !important;
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.navbar-brand {
+    &.logo {
+        padding: 5px 10px;
+        .logo-img {
+            height: 45px;
+            width: 100px;
+            display: inline-block;
+            vertical-align: middle;
+            background: url('../../../content/images/altron-logo.png') no-repeat center center;
+            background-size: contain;
+        }
+    }
+}

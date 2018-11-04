@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{email.projrep.title}">Project Report</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    </head>
+    <body>
+        <p th:text="#{email.projrep.greeting(${})}">
+            Greetings
+        </p>
+        <p th:text="#{email.projrep.textBody}">
+            Project info
+        </p>
+        <p>
+            <span th:text="#{email.projrep.closing}">Regards, </span>
+            <br/>
+            <em th:text="#{email.projrep.signature}">Altron.</em>
+        </p>
+    </body>
+</html>

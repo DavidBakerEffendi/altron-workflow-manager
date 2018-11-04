@@ -1,0 +1,106 @@
+entity Contact {
+	// id
+    // isprNumber
+    firstName String required,
+    lastName String required,
+    workNumber String minlength(12) maxlength(12),
+    cellNumber String minlength(12) maxlength(12),
+    email String required
+}
+
+entity Company {
+	// id
+    companyName String required,
+    description String
+    headName String required,
+    headEmail String required,
+    headNumber String required minlength(12) maxlength(12),
+}
+
+entity Project {
+	// id
+	isprNumber String required,
+    isprAmount Integer required,
+    isprDescription String,
+    startDate Instant required
+}
+
+entity Milestone {
+	// id (milestoneId)
+    // isprNumber
+    // poNumber
+    name String required
+    dueDate Instant required,
+    previousRevenue Integer,
+    prereceiptedIncome Integer,
+    revenueHoldBack Integer,
+    revenueInNextFinYear Integer,
+    status MilestoneStatus required
+}
+
+entity DAC {
+	// id
+    // milestoneId
+    dueDate Instant required,
+    description String,
+    dacAmount Integer required,
+    status DacStatus required
+}
+
+entity PO {
+	// id
+    // poNumber
+    // milestoneId
+    poAmount Integer required
+}
+
+entity Email {
+	address String required,
+    subject String required,
+    body String required,
+}
+
+entity Attachments {
+	name String required,
+	attachment Blob,
+}
+
+enum DacStatus {
+	CREATED,
+    SENT,
+    APPROVED,
+    DECLINED,
+    INVOICED
+}
+
+enum MilestoneStatus {
+	ACTIVE,
+    WIP,
+    READY,
+    COMPLETE
+}
+
+relationship OneToOne {
+	DAC{email} to Email
+}
+
+relationship OneToMany {
+	Company to Project{cc},
+	Project{milestone} to Milestone{isprNumber}
+    Contact{isprNumber} to Project
+    Email{attachment} to Attachments
+}
+
+relationship ManyToOne {
+	Milestone{user(login)} to User
+    Milestone{poNumber} to PO{milestone}
+}
+
+relationship ManyToMany {
+	Milestone{dac} to DAC{milestone}
+}
+
+paginate Company, Project with infinite-scroll
+paginate DAC, Milestone, PO with pagination
+
+// dto * with mapstruct

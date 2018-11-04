@@ -1,0 +1,180 @@
+/*****************************************************************************
+ Elements
+ ****************************************************************************/
+
+footer {
+    margin-top: 20px;
+    background-color: #093479;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+p,
+div {
+    color: #000000;
+    font-size: 13.5px !important;
+}
+
+footer .block-title {
+    color: #435f78;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 30px;
+    margin-right: -30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: 700;
+}
+
+/*****************************************************************************
+ Classes
+ ****************************************************************************/
+
+h2 {
+    font-size: 1.6rem;
+}
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+a {
+    color: #0c1550;
+    text-decoration: none;
+}
+
+a {
+    background: transparent;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer {
+    background-color: #ffffff;
+    min-height: 10px;
+    width: 100%;
+    padding: 15px 0 0 0;
+    margin: 0;
+    border-top: 2px solid #435f78;
+    font-family: 'Montserrat';
+}
+
+.footer a {
+    color: #435f78;
+    font-weight: normal;
+}
+
+.footer p,
+.footer d {
+    color: #435f78;
+}
+
+footer a:hover {
+    color: #0c1550;
+    text-decoration: none;
+}
+
+.footer a {
+    color: #435f78;
+}
+
+/*****************************************************************************
+ IDs
+ ****************************************************************************/
+
+#footer-opened-div {
+    color: #ffffff;
+}
+
+#footer-content-left {
+    padding-left: 0;
+}
+
+#footer_closed_div {
+    text-align: center;
+}
+
+#footer_closed_div #closed_footer_img {
+    cursor: pointer;
+}
+
+#block-views-news-block-1 .view-header a {
+    float: right;
+    margin-top: 70px;
+    padding: 10px 30px;
+    color: white;
+    background-color: #00bae2;
+    margin-right: 5px;
+}
+
+#block-block-10 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* ==========================================================================
+Social Media
+========================================================================== */
+
+#footer-social-media {
+    background-size: contain;
+    background-position-x: center;
+    a {
+        padding: 6px;
+        color: transparent;
+        width: 89px;
+        height: 50px;
+        font-size: 1.8em;
+        background-repeat: no-repeat;
+    }
+}
+
+.footer p {
+    margin: 0 0 7px;
+}
+
+.twitter {
+    background-image: url('../../../content/images/social-media-icons/twitter-icon.png');
+    :hover {
+        background-image: url('../../../content/images/social-media-icons/twitter-icon-active.png');
+    }
+}
+
+.facebook {
+    background-image: url('../../../content/images/social-media-icons/fb-icon-blue.png');
+    :hover {
+        background-image: url('../../../content/images/social-media-icons/facebook-active-icon.png');
+    }
+}
+
+.linkedin {
+    background-image: url('../../../content/images/social-media-icons/linkedin-icon.png');
+    :hover {
+        background-image: url('../../../content/images/social-media-icons/linkedin-active-icon.png');
+    }
+}
+
+.youtube {
+    background-image: url('../../../content/images/social-media-icons/youtube-icon.png');
+    :hover {
+        background-image: url('../../../content/images/social-media-icons/youtube-icon.png');
+    }
+}
+
+/*****************************************************************************
+ Media Queries
+ ****************************************************************************/
+
+@media only screen and (max-width: 991px) {
+    #block-views-news-block-1 .view-header a {
+        margin-top: -62px;
+    }
+}

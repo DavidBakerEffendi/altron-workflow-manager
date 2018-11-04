@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-lg-8 panel bs-no-padding color-home-1" style="padding-left: 20px">
+            <h1>Create or edit a Attachments</h1>
+        </div>
+        <div class="col-lg-3 panel bs-no-padding color-home-2"></div>
+        <div class="col-lg-1 panel bs-no-padding color-home-3 "></div>
+    </div>
+
+    <div class="panel">
+        <div class="row">
+            <div class="col-1"></div>
+
+            <div class="col-10">
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+                        <div class="form-group" [hidden]="!attachments.id">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id"
+                                [(ngModel)]="attachments.id" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_name">Name</label>
+                            <input type="text" class="form-control" name="name" id="field_name"
+                                [(ngModel)]="attachments.name" required/>
+                            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.name?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_attachment">Attachment</label>
+                            <div>
+                                <div *ngIf="attachments.attachment" class="form-text text-danger clearfix">
+                                    <a class="pull-left" (click)="openFile(attachments.attachmentContentType, attachments.attachment)">open</a><br>
+                                    <span class="pull-left">{{attachments.attachmentContentType}}, {{byteSize(attachments.attachment)}}</span>
+                                    <button type="button" (click)="attachments.attachment=null;attachments.attachmentContentType=null;"
+                                            class="btn btn-secondary btn-xs pull-right">
+                                        <fa-icon [icon]="'times'"></fa-icon>
+                                    </button>
+                                </div>
+                                <input type="file" id="file_attachment" (change)="setFileData($event, attachments, 'attachment', false)"/>
+                            </div>
+                            <input type="hidden" class="form-control" name="attachment" id="field_attachment"
+                                [(ngModel)]="attachments.attachment" />
+                            <input type="hidden" class="form-control" name="attachmentContentType" id="field_attachmentContentType"
+                                [(ngModel)]="attachments.attachmentContentType" />
+                        </div>
+
+                        <div class="form-group" [hidden]="true">
+                            <label class="form-control-label" for="field_email">Email</label>
+                            <select class="form-control" id="field_email" name="email" [(ngModel)]="attachments.email" >
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="emailOption.id === attachments.email?.id ? attachments.email : emailOption" *ngFor="let emailOption of emails; trackBy: trackEmailById">{{emailOption.subject}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "float-right">
+                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form> 
+            </div>
+        <div class="col-1"></div>
+        </div>
+    </div>
+</div>

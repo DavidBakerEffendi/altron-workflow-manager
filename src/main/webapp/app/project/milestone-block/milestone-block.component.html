@@ -1,0 +1,16 @@
+
+  <span>Due Date: {{ getDueDate() }}</span>
+  <br>
+  <span>Status: {{ milestone.status }}</span>
+  <!--span>Debug: {{ debugTime() }}<span-->
+  <div class="progress">
+    <div class="progress-bar panel-c-5" role="progressbar" *ngIf="isComplete()"
+      aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="width: 100%">
+    </div>
+    <div class="progress-bar panel-c-4" role="progressbar" *ngIf="!isComplete() && !isOverDue()"
+      aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': getProgress() + '%', 'aria-valuenow': getProgress()}">
+    </div>
+    <div class="progress-bar panel-c-10" role="progressbar" *ngIf="!isComplete() && isOverDue()"
+      aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" style="width: 100%;">
+    </div>
+  </div>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Milestone.
+    -->
+    <changeSet id="20181013101126-1" author="jhipster">
+        <createTable tableName="milestone">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="due_date" type="datetime">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="previous_revenue" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="prereceipted_income" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="revenue_hold_back" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="revenue_in_next_fin_year" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="po_number_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ispr_number_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="milestone" columnName="due_date" columnDataType="datetime"/>
+        
+        <createTable tableName="milestone_dac">
+            <column name="dacs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="milestones_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="milestones_id, dacs_id" tableName="milestone_dac"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

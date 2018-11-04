@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Milestone.
+    -->
+    <changeSet id="20181013101126-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="milestone"
+                                 constraintName="fk_milestone_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="po_number_id"
+                                 baseTableName="milestone"
+                                 constraintName="fk_milestone_po_number_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="po"/>
+
+        <addForeignKeyConstraint baseColumnNames="milestones_id"
+                                 baseTableName="milestone_dac"
+                                 constraintName="fk_milestone_dac_milestones_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="milestone"/>
+        <addForeignKeyConstraint baseColumnNames="dacs_id"
+                                 baseTableName="milestone_dac"
+                                 constraintName="fk_milestone_dac_dacs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dac"/>
+        
+        <addForeignKeyConstraint baseColumnNames="ispr_number_id"
+                                 baseTableName="milestone"
+                                 constraintName="fk_milestone_ispr_number_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"/>
+
+    </changeSet>
+</databaseChangeLog>

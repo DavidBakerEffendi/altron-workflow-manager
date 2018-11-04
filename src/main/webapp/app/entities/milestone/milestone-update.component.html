@@ -1,0 +1,128 @@
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-lg-8 panel color-milestone-1" style="margin-bottom: 0px;">
+                <h1> Create or edit milestone</h1>
+            </div>
+            <div class="col-lg-3 panel color-milestone-2" style="margin-bottom: 0px;"></div>
+            <div class="col-lg-1 panel color-milestone-3" style="margin-bottom: 0px;"></div>
+    </div>
+    
+    <div class = "panel" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-1"></div>  
+            <div class="col-10">
+                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+                        <div class="form-group" [hidden]="!milestone.id">
+                            <label for="id">ID</label>
+                            <input type="text" class="form-control" id="id" name="id"
+                                [(ngModel)]="milestone.id" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_name">Name</label>
+                            <input type="text" class="form-control" name="name" id="field_name"
+                                [(ngModel)]="milestone.name" required/>
+                            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.name?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_dueDate">Due Date</label>
+                            <div class="d-flex">
+                                <input id="field_dueDate" type="datetime-local" class="form-control" name="dueDate" [(ngModel)]="dueDate"
+                                required/>
+                            </div>
+                            <div [hidden]="!(editForm.controls.dueDate?.dirty && editForm.controls.dueDate?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.dueDate?.errors?.required">
+                                This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                    [hidden]="!editForm.controls.dueDate?.errors?.ZonedDateTimelocal">
+                                    This field should be a date and time.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_previousRevenue">Previous Revenue</label>
+                            <input type="number" class="form-control" name="previousRevenue" id="field_previousRevenue"
+                                [(ngModel)]="milestone.previousRevenue" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_prereceiptedIncome">Prereceipted Income</label>
+                            <input type="number" class="form-control" name="prereceiptedIncome" id="field_prereceiptedIncome"
+                                [(ngModel)]="milestone.prereceiptedIncome" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_revenueHoldBack">Revenue Hold Back</label>
+                            <input type="number" class="form-control" name="revenueHoldBack" id="field_revenueHoldBack"
+                                [(ngModel)]="milestone.revenueHoldBack" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_revenueInNextFinYear">Revenue In Next Fin Year</label>
+                            <input type="number" class="form-control" name="revenueInNextFinYear" id="field_revenueInNextFinYear"
+                                [(ngModel)]="milestone.revenueInNextFinYear" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_status">Status</label>
+                            <select class="form-control" name="status" [(ngModel)]="milestone.status" id="field_status"  required>
+                                <option value="ACTIVE">ACTIVE</option>
+                                <option value="WIP">WIP</option>
+                                <option value="READY">READY</option>
+                                <option value="COMPLETE">COMPLETE</option>
+                            </select>
+                            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                                <small class="form-text text-danger"
+                                [hidden]="!editForm.controls.status?.errors?.required">
+                                This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_user">User</label>
+                            <select class="form-control" id="field_user" name="user" [(ngModel)]="milestone.user" >
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="userOption.id === milestone.user?.id ? milestone.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_poNumber">Po Number</label>
+                            <select class="form-control" id="field_poNumber" name="poNumber" [(ngModel)]="milestone.poNumber" >
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="pOOption.id === milestone.poNumber?.id ? milestone.poNumber : pOOption" *ngFor="let pOOption of pos; trackBy: trackPOById">{{pOOption.id}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="field_dac">Dac</label>
+                            <select class="form-control" id="field_dac" multiple name="dac" [(ngModel)]="milestone.dacs">
+                                <option [ngValue]="getSelected(milestone.dacs, dACOption)" *ngFor="let dACOption of dacs; trackBy: trackDACById">{{dACOption.description}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label" for="field_isprNumber">Ispr Number</label>
+                            <select class="form-control" id="field_isprNumber" name="isprNumber" [(ngModel)]="milestone.isprNumber" >
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="projectOption.id === milestone.isprNumber?.id ? milestone.isprNumber : projectOption" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.isprNumber}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class ="float-right">
+                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>
+    

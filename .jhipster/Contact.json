@@ -1,0 +1,63 @@
+{
+    "name": "Contact",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "workNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 12,
+            "fieldValidateRulesMaxlength": 12
+        },
+        {
+            "fieldName": "cellNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 12,
+            "fieldValidateRulesMaxlength": 12
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "isprNumber",
+            "otherEntityName": "project",
+            "otherEntityRelationshipName": "contact"
+        }
+    ],
+    "changelogDate": "20181013101123",
+    "entityTableName": "contact",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
